@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ft.common.dao.MenuDao">
+
+<resultMap id="menuMap" type="com.ft.common.pojo.TMenu">
+
+    <id property="menuId" column="menu_id" />
+    <result property="menuName" column="menu_name" />
+    <result property="parentId" column="parent_id" />
+    <result property="url" column="url" />
+    <result property="remark" column="remark" />
+
+</resultMap>
+    
+    <select id="finaParentMenu" parameterType="java.lang.Integer" resultMap="menuMap" >
+        SELECT
+          MENU_ID,
+          MENU_NAME,
+          PARENT_ID,
+          URL,
+          REMARK
+        FROM T_MENU
+        WHERE PARENT_ID IS NULL
+
+    </select>
+</mapper>

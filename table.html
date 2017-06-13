@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>table</title>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+    <script src="js/jquery-3.2.1.js"></script>
+
+    <script>
+
+        var table_root ;
+
+        var tr_ins ;
+
+        $(function(){
+                table_root = $('#data_tab')
+                $(table_root).find('tr');
+                tr_ins = $(table_root).find('tr')[1];
+                var tr_copy = $(tr_ins).clone();
+                tr_ins.remove();
+                var result = getData();
+
+                show(result.data,table_root,tr_copy);
+
+        });
+
+        function getData(){
+            var result = {data:[{'name':'admin','age':11,'tel':'1234567645345'},{'name':'luffy','age':17,'tel':'1234567645345'},{'name':'nami','age':19,'tel':'1234567645345'}]}
+            return result;
+    }
+        function show(data,tab_p,tr_p){
+            for(var i=0;i<data.length;i++){
+                var  temp = data[i];
+
+                var tr_temp = tr_p.clone();
+
+               $(tr_temp).find('td:eq(0)').html(temp.name);
+               $(tr_temp).find('td:eq(1)').html(temp.age);
+               $(tr_temp).find('td:eq(2)').html(temp.tel);
+               tab_p.append(tr_temp);
+            }
+        }
+    
+    </script>
+</head>
+<body>
+    <table class="table table-bordered" id="data_tab">
+        <tr> 
+            <th><input type="checkbox"></th>
+            <th>Name</th>
+            <th>Age</th>    
+            <th>Tel</th>
+        </tr>
+
+         <tr>
+            <th><input type="checkbox"></th>
+            <td>aaaaa</td>
+            <td>aaaaa</td>
+            <td>aaaaa</td>
+        </tr>
+    </table>
+</body>
+</html>
